@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para la mejor chica del mundoo, mi mami jsjs</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('patron.png') repeat-y;
+    animation: moveBackground 20s linear infinite;
+    font-family: Arial, sans-serif; /* Fuente */
+    font-size: 24px; /* Tamaño de fuente */
+    line-height: 1.5; /* Espaciado de línea */
+    position: relative;
+    color: black; /* Color de texto negro */
+  }
+
+  .character-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-start; /* Alineación a la izquierda */
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .text-container {
+    max-width: 50%; /* Ancho máximo para el contenedor de texto */
+    margin-left: 20px; /* Espacio entre el texto y la imagen */
+  }
+
+  .character {
+    position: relative;
+    animation: jump 1s ease alternate infinite;
+  }
+
+  .character img {
+    width: 300px; /* Ancho de la imagen */
+    height: auto; /* Altura automática para mantener la proporción */
+  }
+
+  .button-container {
+    position: relative;
+    z-index: 2; /* Para estar sobre la imagen */
+    text-align: center;
+    margin-top: 20px; /* Espacio entre la imagen y el botón */
+  }
+
+  .button {
+    background-color: #ffb6c1; /* Rosa pastel */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+  }
+
+  .button:disabled {
+    background-color: #ccc; /* Color gris para deshabilitado */
+    cursor: not-allowed;
+  }
+
+  @keyframes moveBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 0 -100vh;
+    }
+  }
+
+  @keyframes jump {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Contenedor de la imagen de Ari y el texto -->
+  <div class="character-container">
+    <div class="text-container">
+      <p style="font-size: 32px; font-weight: bold; line-height: 1.5;">
+        Mami, eres la mejor del mundo..<br>
+        gracias por aparecer en mi vida<br>
+        Dándole un significado y felicidad<br>
+        eres lo mejor
+      </p>
+    </div>
+    <div class="character">
+      <img src="ari.png" alt="Ari brincando" id="ari">
+    </div>
+  </div>
+
+  <!-- Botón para reproducir música -->
+  <div class="button-container">
+    <button class="button" onclick="playAudio()" id="playButton">Reproducir música :3</button>
+  </div>
+
+  <!-- Script para manejar la animación de brinco de Ari -->
+  <script>
+    var audio = new Audio('love.ogg');
+    var button = document.getElementById('playButton');
+    var cooldown = false;
+
+    function playAudio() {
+      if (!cooldown) {
+        audio.currentTime = 0; // Reiniciar el audio si se presiona de nuevo
+        audio.play();
+        button.disabled = true;
+        cooldown = true;
+        setTimeout(function() {
+          cooldown = false;
+          button.disabled = false;
+        }, 30000); // Habilitar el botón después de 30 segundos
+      }
+    }
+
+    // Animación de brinco para Ari
+    var ari = document.getElementById('ari');
+    setInterval(function() {
+      ari.classList.toggle('jump');
+    }, 1000);
+
+  </script>
+</body>
+</html>
